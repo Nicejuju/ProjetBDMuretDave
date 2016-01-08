@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBIG3A3ModelStoreContainer" CdmEntityContainer="DBIG3A3Entities">
+    <EntitySetMapping Name="Emplois">
+      <EntityTypeMapping TypeName="DBIG3A3Model.Emploi">
+        <MappingFragment StoreEntitySet="Emploi">
+          <ScalarProperty Name="IdEmploi" ColumnName="IdEmploi" />
+          <ScalarProperty Name="IdPersonne" ColumnName="IdPersonne" />
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+          <ScalarProperty Name="TypeEmploi" ColumnName="TypeEmploi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Entreprises">
+      <EntityTypeMapping TypeName="DBIG3A3Model.Entreprise">
+        <MappingFragment StoreEntitySet="Entreprise">
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+          <ScalarProperty Name="Denomination" ColumnName="Denomination" />
+          <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExamenRealises">
+      <EntityTypeMapping TypeName="DBIG3A3Model.ExamenRealise">
+        <MappingFragment StoreEntitySet="ExamenRealise">
+          <ScalarProperty Name="idExamenReal" ColumnName="idExamenReal" />
+          <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+          <ScalarProperty Name="IdTypeExamen" ColumnName="IdTypeExamen" />
+          <ScalarProperty Name="IdVisiteMedicale" ColumnName="IdVisiteMedicale" />
+          <ScalarProperty Name="Resultat" ColumnName="Resultat" />
+          <ScalarProperty Name="Duree" ColumnName="Duree" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lieux">
+      <EntityTypeMapping TypeName="DBIG3A3Model.Lieu">
+        <MappingFragment StoreEntitySet="Lieu">
+          <ScalarProperty Name="IdLieu" ColumnName="IdLieu" />
+          <ScalarProperty Name="Localite" ColumnName="Localite" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Personnes">
+      <EntityTypeMapping TypeName="DBIG3A3Model.Personne">
+        <MappingFragment StoreEntitySet="Personne">
+          <ScalarProperty Name="IdPersonne" ColumnName="IdPersonne" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+          <ScalarProperty Name="DateEntree" ColumnName="DateEntree" />
+          <ScalarProperty Name="DateSortie" ColumnName="DateSortie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeExamen">
+      <EntityTypeMapping TypeName="DBIG3A3Model.TypeExaman">
+        <MappingFragment StoreEntitySet="TypeExamen">
+          <ScalarProperty Name="IdTypeExamen" ColumnName="IdTypeExamen" />
+          <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="PrixSoumis" ColumnName="PrixSoumis" />
+          <ScalarProperty Name="PrixNonSoumis" ColumnName="PrixNonSoumis" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VisiteMedicales">
+      <EntityTypeMapping TypeName="DBIG3A3Model.VisiteMedicale">
+        <MappingFragment StoreEntitySet="VisiteMedicale">
+          <ScalarProperty Name="IdVisiteMedicale" ColumnName="IdVisiteMedicale" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="IdEmploi" ColumnName="IdEmploi" />
+          <ScalarProperty Name="IdLieu" ColumnName="IdLieu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

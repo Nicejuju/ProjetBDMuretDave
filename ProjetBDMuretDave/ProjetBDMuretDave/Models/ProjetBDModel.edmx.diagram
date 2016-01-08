@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7e3f31e8600347c9b761d844ff4c8f8d" Name="Diagram1">
+        <EntityTypeShape EntityType="DBIG3A3Model.Emploi" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBIG3A3Model.Entreprise" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBIG3A3Model.ExamenRealise" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBIG3A3Model.Lieu" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBIG3A3Model.Personne" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBIG3A3Model.TypeExaman" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBIG3A3Model.VisiteMedicale" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="DBIG3A3Model.REF_Emplo_Entre_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="DBIG3A3Model.REF_Emplo_Perso" ManuallyRouted="false" />
+        <AssociationConnector Association="DBIG3A3Model.REF_Visit_Emplo_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="DBIG3A3Model.REF_Exame_TypeE_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="DBIG3A3Model.REF_Exame_Visit" ManuallyRouted="false" />
+        <AssociationConnector Association="DBIG3A3Model.REF_Visit_Lieu_FK" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

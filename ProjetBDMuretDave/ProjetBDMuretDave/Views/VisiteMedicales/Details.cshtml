@@ -1,0 +1,81 @@
+﻿@model ProjetBDMuretDave.Models.VisiteMedicale
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Visite médicale</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdVisiteMedicale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdVisiteMedicale)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Prix")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrixTotalVisite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Emploi.Personne.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Emploi.Personne.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Entreprise")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Emploi.Entreprise.Denomination)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Date d'embauchement")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Emploi.Personne.DateEntree)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Emploi.TypeEmploi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Emploi.TypeEmploiString)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Lieu de la visite")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lieu.Localite)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Retour à la liste", "Index")
+</p>

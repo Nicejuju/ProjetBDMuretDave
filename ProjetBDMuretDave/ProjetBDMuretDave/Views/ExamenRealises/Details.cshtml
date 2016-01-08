@@ -1,0 +1,57 @@
+﻿@model ProjetBDMuretDave.Models.ExamenRealise
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Détails</h2>
+
+<div>
+    <h4>Examen réalisé</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Libellé examen")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Libelle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Resultat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Resultat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Duree)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Duree)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Type examen")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeExaman.Libelle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VisiteMedicale.IdVisiteMedicale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VisiteMedicale.IdVisiteMedicale)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Retour à la liste", "IndexExamen", new { idVisite = Model.IdVisiteMedicale })
+</p>

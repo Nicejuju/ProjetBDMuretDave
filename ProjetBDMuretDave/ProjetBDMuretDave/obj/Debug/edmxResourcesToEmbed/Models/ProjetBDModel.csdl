@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBIG3A3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Emploi">
+    <Key>
+      <PropertyRef Name="IdEmploi" />
+    </Key>
+    <Property Name="IdEmploi" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+    <Property Name="IdPersonne" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+    <Property Name="Numero" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+    <Property Name="TypeEmploi" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Entreprise" Relationship="Self.REF_Emplo_Entre_FK" FromRole="Emploi" ToRole="Entreprise" />
+    <NavigationProperty Name="Personne" Relationship="Self.REF_Emplo_Perso" FromRole="Emploi" ToRole="Personne" />
+    <NavigationProperty Name="VisiteMedicales" Relationship="Self.REF_Visit_Emplo_FK" FromRole="Emploi" ToRole="VisiteMedicale" />
+  </EntityType>
+  <EntityType Name="Entreprise">
+    <Key>
+      <PropertyRef Name="Numero" />
+    </Key>
+    <Property Name="Numero" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+    <Property Name="Denomination" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Adresse" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telephone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Emplois" Relationship="Self.REF_Emplo_Entre_FK" FromRole="Entreprise" ToRole="Emploi" />
+  </EntityType>
+  <EntityType Name="ExamenRealise">
+    <Key>
+      <PropertyRef Name="idExamenReal" />
+    </Key>
+    <Property Name="idExamenReal" Type="Decimal" Precision="6" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Libelle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdTypeExamen" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+    <Property Name="IdVisiteMedicale" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+    <Property Name="Resultat" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Duree" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+    <NavigationProperty Name="TypeExaman" Relationship="Self.REF_Exame_TypeE_FK" FromRole="ExamenRealise" ToRole="TypeExamen" />
+    <NavigationProperty Name="VisiteMedicale" Relationship="Self.REF_Exame_Visit" FromRole="ExamenRealise" ToRole="VisiteMedicale" />
+  </EntityType>
+  <EntityType Name="Lieu">
+    <Key>
+      <PropertyRef Name="IdLieu" />
+    </Key>
+    <Property Name="IdLieu" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+    <Property Name="Localite" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="VisiteMedicales" Relationship="Self.REF_Visit_Lieu_FK" FromRole="Lieu" ToRole="VisiteMedicale" />
+  </EntityType>
+  <EntityType Name="Personne">
+    <Key>
+      <PropertyRef Name="IdPersonne" />
+    </Key>
+    <Property Name="IdPersonne" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+    <Property Name="Nom" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Adresse" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DateEntree" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DateSortie" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Emplois" Relationship="Self.REF_Emplo_Perso" FromRole="Personne" ToRole="Emploi" />
+  </EntityType>
+  <EntityType Name="TypeExaman">
+    <Key>
+      <PropertyRef Name="IdTypeExamen" />
+    </Key>
+    <Property Name="IdTypeExamen" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+    <Property Name="Libelle" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PrixSoumis" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+    <Property Name="PrixNonSoumis" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+    <NavigationProperty Name="ExamenRealises" Relationship="Self.REF_Exame_TypeE_FK" FromRole="TypeExamen" ToRole="ExamenRealise" />
+  </EntityType>
+  <EntityType Name="VisiteMedicale">
+    <Key>
+      <PropertyRef Name="IdVisiteMedicale" />
+    </Key>
+    <Property Name="IdVisiteMedicale" Type="Decimal" Precision="6" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="IdEmploi" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+    <Property Name="IdLieu" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+    <NavigationProperty Name="Emploi" Relationship="Self.REF_Visit_Emplo_FK" FromRole="VisiteMedicale" ToRole="Emploi" />
+    <NavigationProperty Name="ExamenRealises" Relationship="Self.REF_Exame_Visit" FromRole="VisiteMedicale" ToRole="ExamenRealise" />
+    <NavigationProperty Name="Lieu" Relationship="Self.REF_Visit_Lieu_FK" FromRole="VisiteMedicale" ToRole="Lieu" />
+  </EntityType>
+  <Association Name="REF_Emplo_Entre_FK">
+    <End Role="Entreprise" Type="Self.Entreprise" Multiplicity="1" />
+    <End Role="Emploi" Type="Self.Emploi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entreprise">
+        <PropertyRef Name="Numero" />
+      </Principal>
+      <Dependent Role="Emploi">
+        <PropertyRef Name="Numero" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="REF_Emplo_Perso">
+    <End Role="Personne" Type="Self.Personne" Multiplicity="1" />
+    <End Role="Emploi" Type="Self.Emploi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personne">
+        <PropertyRef Name="IdPersonne" />
+      </Principal>
+      <Dependent Role="Emploi">
+        <PropertyRef Name="IdPersonne" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="REF_Visit_Emplo_FK">
+    <End Role="Emploi" Type="Self.Emploi" Multiplicity="1" />
+    <End Role="VisiteMedicale" Type="Self.VisiteMedicale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Emploi">
+        <PropertyRef Name="IdEmploi" />
+      </Principal>
+      <Dependent Role="VisiteMedicale">
+        <PropertyRef Name="IdEmploi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="REF_Exame_TypeE_FK">
+    <End Role="TypeExamen" Type="Self.TypeExaman" Multiplicity="1" />
+    <End Role="ExamenRealise" Type="Self.ExamenRealise" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeExamen">
+        <PropertyRef Name="IdTypeExamen" />
+      </Principal>
+      <Dependent Role="ExamenRealise">
+        <PropertyRef Name="IdTypeExamen" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="REF_Exame_Visit">
+    <End Role="VisiteMedicale" Type="Self.VisiteMedicale" Multiplicity="1" />
+    <End Role="ExamenRealise" Type="Self.ExamenRealise" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VisiteMedicale">
+        <PropertyRef Name="IdVisiteMedicale" />
+      </Principal>
+      <Dependent Role="ExamenRealise">
+        <PropertyRef Name="IdVisiteMedicale" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="REF_Visit_Lieu_FK">
+    <End Role="Lieu" Type="Self.Lieu" Multiplicity="1" />
+    <End Role="VisiteMedicale" Type="Self.VisiteMedicale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lieu">
+        <PropertyRef Name="IdLieu" />
+      </Principal>
+      <Dependent Role="VisiteMedicale">
+        <PropertyRef Name="IdLieu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBIG3A3Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Emplois" EntityType="Self.Emploi" />
+    <EntitySet Name="Entreprises" EntityType="Self.Entreprise" />
+    <EntitySet Name="ExamenRealises" EntityType="Self.ExamenRealise" />
+    <EntitySet Name="Lieux" EntityType="Self.Lieu" />
+    <EntitySet Name="Personnes" EntityType="Self.Personne" />
+    <EntitySet Name="TypeExamen" EntityType="Self.TypeExaman" />
+    <EntitySet Name="VisiteMedicales" EntityType="Self.VisiteMedicale" />
+    <AssociationSet Name="REF_Emplo_Entre_FK" Association="Self.REF_Emplo_Entre_FK">
+      <End Role="Entreprise" EntitySet="Entreprises" />
+      <End Role="Emploi" EntitySet="Emplois" />
+    </AssociationSet>
+    <AssociationSet Name="REF_Emplo_Perso" Association="Self.REF_Emplo_Perso">
+      <End Role="Personne" EntitySet="Personnes" />
+      <End Role="Emploi" EntitySet="Emplois" />
+    </AssociationSet>
+    <AssociationSet Name="REF_Visit_Emplo_FK" Association="Self.REF_Visit_Emplo_FK">
+      <End Role="Emploi" EntitySet="Emplois" />
+      <End Role="VisiteMedicale" EntitySet="VisiteMedicales" />
+    </AssociationSet>
+    <AssociationSet Name="REF_Exame_TypeE_FK" Association="Self.REF_Exame_TypeE_FK">
+      <End Role="TypeExamen" EntitySet="TypeExamen" />
+      <End Role="ExamenRealise" EntitySet="ExamenRealises" />
+    </AssociationSet>
+    <AssociationSet Name="REF_Exame_Visit" Association="Self.REF_Exame_Visit">
+      <End Role="VisiteMedicale" EntitySet="VisiteMedicales" />
+      <End Role="ExamenRealise" EntitySet="ExamenRealises" />
+    </AssociationSet>
+    <AssociationSet Name="REF_Visit_Lieu_FK" Association="Self.REF_Visit_Lieu_FK">
+      <End Role="Lieu" EntitySet="Lieux" />
+      <End Role="VisiteMedicale" EntitySet="VisiteMedicales" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

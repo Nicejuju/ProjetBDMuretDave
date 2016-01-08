@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBIG3A3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Emploi">
+    <Key>
+      <PropertyRef Name="IdEmploi" />
+    </Key>
+    <Property Name="IdEmploi" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+    <Property Name="IdPersonne" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+    <Property Name="Numero" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+    <Property Name="TypeEmploi" Type="varchar" MaxLength="6" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Entreprise">
+    <Key>
+      <PropertyRef Name="Numero" />
+    </Key>
+    <Property Name="Numero" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+    <Property Name="Denomination" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Adresse" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Telephone" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ExamenRealise">
+    <Key>
+      <PropertyRef Name="idExamenReal" />
+    </Key>
+    <Property Name="idExamenReal" Type="numeric" Precision="6" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Libelle" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IdTypeExamen" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+    <Property Name="IdVisiteMedicale" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+    <Property Name="Resultat" Type="varchar" MaxLength="1000" Nullable="false" />
+    <Property Name="Duree" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Lieu">
+    <Key>
+      <PropertyRef Name="IdLieu" />
+    </Key>
+    <Property Name="IdLieu" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+    <Property Name="Localite" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Personne">
+    <Key>
+      <PropertyRef Name="IdPersonne" />
+    </Key>
+    <Property Name="IdPersonne" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+    <Property Name="Nom" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Adresse" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="DateEntree" Type="date" Nullable="false" />
+    <Property Name="DateSortie" Type="date" />
+  </EntityType>
+  <EntityType Name="TypeExamen">
+    <Key>
+      <PropertyRef Name="IdTypeExamen" />
+    </Key>
+    <Property Name="IdTypeExamen" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+    <Property Name="Libelle" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="1000" Nullable="false" />
+    <Property Name="PrixSoumis" Type="numeric" Precision="6" Scale="2" Nullable="false" />
+    <Property Name="PrixNonSoumis" Type="numeric" Precision="6" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VisiteMedicale">
+    <Key>
+      <PropertyRef Name="IdVisiteMedicale" />
+    </Key>
+    <Property Name="IdVisiteMedicale" Type="numeric" Precision="6" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="IdEmploi" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+    <Property Name="IdLieu" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+  </EntityType>
+  <Association Name="REF_Emplo_Entre_FK">
+    <End Role="Entreprise" Type="Self.Entreprise" Multiplicity="1" />
+    <End Role="Emploi" Type="Self.Emploi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entreprise">
+        <PropertyRef Name="Numero" />
+      </Principal>
+      <Dependent Role="Emploi">
+        <PropertyRef Name="Numero" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="REF_Emplo_Perso">
+    <End Role="Personne" Type="Self.Personne" Multiplicity="1" />
+    <End Role="Emploi" Type="Self.Emploi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personne">
+        <PropertyRef Name="IdPersonne" />
+      </Principal>
+      <Dependent Role="Emploi">
+        <PropertyRef Name="IdPersonne" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="REF_Exame_TypeE_FK">
+    <End Role="TypeExamen" Type="Self.TypeExamen" Multiplicity="1" />
+    <End Role="ExamenRealise" Type="Self.ExamenRealise" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeExamen">
+        <PropertyRef Name="IdTypeExamen" />
+      </Principal>
+      <Dependent Role="ExamenRealise">
+        <PropertyRef Name="IdTypeExamen" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="REF_Exame_Visit">
+    <End Role="VisiteMedicale" Type="Self.VisiteMedicale" Multiplicity="1" />
+    <End Role="ExamenRealise" Type="Self.ExamenRealise" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VisiteMedicale">
+        <PropertyRef Name="IdVisiteMedicale" />
+      </Principal>
+      <Dependent Role="ExamenRealise">
+        <PropertyRef Name="IdVisiteMedicale" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="REF_Visit_Emplo_FK">
+    <End Role="Emploi" Type="Self.Emploi" Multiplicity="1" />
+    <End Role="VisiteMedicale" Type="Self.VisiteMedicale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Emploi">
+        <PropertyRef Name="IdEmploi" />
+      </Principal>
+      <Dependent Role="VisiteMedicale">
+        <PropertyRef Name="IdEmploi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="REF_Visit_Lieu_FK">
+    <End Role="Lieu" Type="Self.Lieu" Multiplicity="1" />
+    <End Role="VisiteMedicale" Type="Self.VisiteMedicale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lieu">
+        <PropertyRef Name="IdLieu" />
+      </Principal>
+      <Dependent Role="VisiteMedicale">
+        <PropertyRef Name="IdLieu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBIG3A3ModelStoreContainer">
+    <EntitySet Name="Emploi" EntityType="Self.Emploi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Entreprise" EntityType="Self.Entreprise" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExamenRealise" EntityType="Self.ExamenRealise" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Lieu" EntityType="Self.Lieu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Personne" EntityType="Self.Personne" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TypeExamen" EntityType="Self.TypeExamen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VisiteMedicale" EntityType="Self.VisiteMedicale" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="REF_Emplo_Entre_FK" Association="Self.REF_Emplo_Entre_FK">
+      <End Role="Entreprise" EntitySet="Entreprise" />
+      <End Role="Emploi" EntitySet="Emploi" />
+    </AssociationSet>
+    <AssociationSet Name="REF_Emplo_Perso" Association="Self.REF_Emplo_Perso">
+      <End Role="Personne" EntitySet="Personne" />
+      <End Role="Emploi" EntitySet="Emploi" />
+    </AssociationSet>
+    <AssociationSet Name="REF_Exame_TypeE_FK" Association="Self.REF_Exame_TypeE_FK">
+      <End Role="TypeExamen" EntitySet="TypeExamen" />
+      <End Role="ExamenRealise" EntitySet="ExamenRealise" />
+    </AssociationSet>
+    <AssociationSet Name="REF_Exame_Visit" Association="Self.REF_Exame_Visit">
+      <End Role="VisiteMedicale" EntitySet="VisiteMedicale" />
+      <End Role="ExamenRealise" EntitySet="ExamenRealise" />
+    </AssociationSet>
+    <AssociationSet Name="REF_Visit_Emplo_FK" Association="Self.REF_Visit_Emplo_FK">
+      <End Role="Emploi" EntitySet="Emploi" />
+      <End Role="VisiteMedicale" EntitySet="VisiteMedicale" />
+    </AssociationSet>
+    <AssociationSet Name="REF_Visit_Lieu_FK" Association="Self.REF_Visit_Lieu_FK">
+      <End Role="Lieu" EntitySet="Lieu" />
+      <End Role="VisiteMedicale" EntitySet="VisiteMedicale" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

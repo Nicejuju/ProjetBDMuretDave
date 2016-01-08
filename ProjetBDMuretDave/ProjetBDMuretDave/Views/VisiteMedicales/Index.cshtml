@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ProjetBDMuretDave.Models.VisiteMedicale>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Liste des visites</h2>
+
+<p>
+    @Html.ActionLink("Créer nouvelle visite", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Emploi.Personne.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lieu.Localite)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Emploi.Personne.Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lieu.Localite)
+        </td>
+        <td>
+            @Html.ActionLink("Modifier", "Edit", new { id=item.IdVisiteMedicale }) |
+            @Html.ActionLink("Détails", "Details", new { id=item.IdVisiteMedicale }) |
+            @Html.ActionLink("Supprimer", "Delete", new { id=item.IdVisiteMedicale }) |
+            @Html.ActionLink("Liste Examens", "IndexExamen", "ExamenRealises", new { idVisite = item.IdVisiteMedicale },null) |
+            @Html.ActionLink("Ajouter examen", "Create", "ExamenRealises", new { idVisite = item.IdVisiteMedicale },null) 
+        </td>
+    </tr>
+}
+
+</table>

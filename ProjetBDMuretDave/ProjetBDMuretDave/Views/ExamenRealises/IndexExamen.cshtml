@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ProjetBDMuretDave.Models.ExamenRealise>
+
+@{
+    ViewBag.Title = "IndexExamen";
+}
+
+<h2>Liste examen de la visite</h2>
+<!--
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p> -->
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Libelle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Resultat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Duree)
+        </th>
+        <th>
+            @Html.DisplayName("Type d'examen")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VisiteMedicale.IdVisiteMedicale)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Libelle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Resultat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DureeEnMinute)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypeExaman.Libelle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VisiteMedicale.IdVisiteMedicale)
+        </td>
+        <td>
+            @Html.ActionLink("Modifier", "Edit", new { id=item.idExamenReal, idVisite=item.IdVisiteMedicale }) |
+            @Html.ActionLink("Détails", "Details", new { id = item.idExamenReal }) |
+            @Html.ActionLink("Supprimer", "Delete", new { id = item.idExamenReal })
+        </td>
+    </tr>
+}
+
+</table>

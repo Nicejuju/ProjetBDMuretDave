@@ -1,0 +1,64 @@
+﻿@model ProjetBDMuretDave.Models.ExamenRealise
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Supprimer</h2>
+
+<h3>Êtes-vous sûr de vouloir supprimer cet examen ?</h3>
+<div>
+    <h4>Examen réalisé</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Libelle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Resultat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Resultat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Duree)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Duree)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Type d'examen")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeExaman.Libelle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VisiteMedicale.IdVisiteMedicale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VisiteMedicale.IdVisiteMedicale)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Supprimer" class="btn btn-default" /> |
+            @Html.ActionLink("Retour à la liste", "IndexExamen", new { idVisite = Model.IdVisiteMedicale },null)
+        </div>
+    }
+</div>
