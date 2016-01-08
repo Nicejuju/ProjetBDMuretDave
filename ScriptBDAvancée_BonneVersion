@@ -1,0 +1,223 @@
+
+insert into Personne(IdPersonne,Nom,Adresse,DateEntree,DateSortie)
+values(1,'Muret','Rue de glimes,3 1370 Dongelberg','2005-10-11','2010-12-03');
+
+insert into Personne(IdPersonne,Nom,Adresse,DateEntree,DateSortie)
+values(2,'Dave','Rue de la justice,10 6200 Chatelet','2003-05-01',null);
+
+insert into Personne(IdPersonne,Nom,Adresse,DateEntree,DateSortie)
+values(3,'Falmagne','Rue du je sais plus,10 5202 Sovet','2000-08-21','2012-10-07');
+
+insert into Personne(IdPersonne,Nom,Adresse,DateEntree,DateSortie)
+values(4,'Chaboteaux','Rue de la chapelle,10 5001 Malonne','2011-08-30','2014-02-07');
+
+insert into Personne(IdPersonne,Nom,Adresse,DateEntree,DateSortie)
+values(5,'Demoustier','Rue Bonne espérance,08 4056 Mettet','2007-08-21',null);
+
+insert into Entreprise(Numero,Denomination,Adresse,Telephone)
+values (1,'GSK', 'Rue du cancer,1 1302 Rixensart', '010412233');
+
+insert into Entreprise(Numero,Denomination,Adresse,Telephone)
+values (2,'Google', 'Rue internet,1 10020 Palo Alto', '0125789651');
+
+insert into Entreprise(Numero,Denomination,Adresse,Telephone)
+values (3,'Henallux', 'Rue Joseph Calozet 10, 5000 Namur', '081104050');
+
+insert into Entreprise(Numero,Denomination,Adresse,Telephone)
+values (4,'Medit', 'Rue renival,3 1310 Grez-Doiceau', '0102566851');
+
+insert into Emploi(IdEmploi,IdPersonne,Numero,TypeEmploi)
+values(1,1,1,1);
+
+insert into Emploi(IdEmploi,IdPersonne,Numero,TypeEmploi)
+values(2,2,1,0);
+
+insert into Emploi(IdEmploi,IdPersonne,Numero,TypeEmploi)
+values(3,3,2,1);
+
+insert into Emploi(IdEmploi,IdPersonne,Numero,TypeEmploi)
+values(4,4,3,0);
+
+insert into Emploi(IdEmploi,IdPersonne,Numero,TypeEmploi)
+values(5,5,4,1);
+
+insert into Lieu(IdLieu, Localite,Type)
+values(1,'Jodoigne','car');
+
+insert into Lieu(IdLieu, Localite,Type)
+values(2,'Namur','centre');
+
+insert into Lieu(IdLieu, Localite,Type)
+values(3,'chatelet','local');
+
+insert into Lieu(IdLieu, Localite,Type)
+values(4,'Bruxelles','local');
+
+insert into Lieu(IdLieu, Localite,Type)
+values(5,'Wavre','car');
+
+
+insert into TypeExamen(IdTypeExamen,Libelle,Description,PrixSoumis,PrixNonSoumis)
+values(1,'Vue','Ce type d''examen reprend les risques liés à tous les problèmes de la vue.',40.5,36.2);
+
+insert into TypeExamen(IdTypeExamen,Libelle,Description,PrixSoumis,PrixNonSoumis)
+values(2,'Ouie','Ce type d''examen reprend les risques liés à tous les problèmes des oreilles.',55,48.5);
+
+insert into TypeExamen(IdTypeExamen,Libelle,Description,PrixSoumis,PrixNonSoumis)
+values(3,'Brulure','Ce type d''examen reprend les risques liés à des brûlures, quel que soit le degré de celle-ci.',102.5,100);
+
+insert into TypeExamen(IdTypeExamen,Libelle,Description,PrixSoumis,PrixNonSoumis)
+values(4,'Poumon','Ce type d''examen reprend les risques liés à des problèmes qui touche les poumons. Que ce soit la respiration, la fumée...',75.55,72.7);
+
+insert into TypeExamen(IdTypeExamen,Libelle,Description,PrixSoumis,PrixNonSoumis)
+values(5,'Coupure','Ce type d''examen reprend les risques liés à toutes les coupures possibles.',20.5,19.5);
+
+
+
+insert into VisiteMedicale(Date,IdEmploi,IdLieu)
+values('2015-02-11',1,1);
+
+insert into VisiteMedicale(Date,IdEmploi,IdLieu)
+values('2014-12-12',2,2);
+
+insert into VisiteMedicale(Date,IdEmploi,IdLieu)
+values('2004-10-08',3,2);
+
+
+
+
+insert into ExamenRealise(Libelle,IdTypeExamen,IdVisiteMedicale,Resultat,Duree)
+values('Myopie',1,1,'Le patient présente une faible myopie.',35);
+
+insert into ExamenRealise(Libelle,IdTypeExamen,IdVisiteMedicale,Resultat,Duree)
+values('Surdité',2,2,'Le patient présente une otite. Une consultation de son médecin est nécessaire pour continuer le traitement',20);
+
+/*create table Emploi (
+     IdEmploi numeric(6) not null,
+     IdPersonne numeric(6) not null,
+     Numero numeric(6) not null,
+     TypeEmploi bit not null,
+     constraint ID_Emploi_ID primary key (IdEmploi),
+     constraint SID_Emploi_ID unique (IdPersonne, Numero));
+
+create table Entreprise (
+     Numero numeric(6) not null,
+     Denomination varchar(50) not null,
+     Adresse varchar(100) not null,
+     Telephone varchar(10) not null,
+     constraint ID_Entreprise_ID primary key (Numero));
+
+create table ExamenRealise (
+     idExamenReal numeric(6) not null,
+     Libelle varchar(50) not null,
+     IdTypeExamen numeric(6) not null,
+     IdVisiteMedicale numeric(6) not null,
+     Resultat varchar(1000) not null,
+     Duree numeric(4) not null,
+     constraint ID_ExamenRealise_ID primary key (idExamenReal),
+     constraint SID_ExamenRealise_ID unique (IdVisiteMedicale, IdTypeExamen));
+
+create table Lieu (
+     IdLieu numeric(6) not null,
+     Localite varchar(50) not null,
+     Type varchar(50) not null,
+     constraint ID_Lieu_ID primary key (IdLieu));
+
+create table Personne (
+     IdPersonne numeric(6) not null,
+     Nom varchar(30) not null,
+     Adresse varchar(100) not null,
+     DateEntree date not null,
+     DateSortie date,
+     constraint ID_Personne_ID primary key (IdPersonne));
+
+create table TypeExamen (
+     IdTypeExamen numeric(6) not null IDENTITY(1,1),
+     Libelle varchar(30) not null,
+     Description varchar(1000) not null,
+     PrixSoumis numeric(6,2) not null,
+     PrixNonSoumis numeric(6,2) not null,
+     constraint ID_TypeExamen_ID primary key (IdTypeExamen));
+
+create table VisiteMedicale (
+     IdVisiteMedicale numeric(6) not null IDENTITY(1,1),
+     Date date not null,
+     IdEmploi numeric(6) not null,
+     IdLieu numeric(6) not null,
+     constraint ID_VisiteMedicale_ID primary key (IdVisiteMedicale),
+     constraint SID_VisiteMedicale_ID unique (Date, IdEmploi));
+
+
+-- Constraints Section
+-- ___________________ 
+
+alter table Emploi add constraint REF_Emplo_Perso
+     foreign key (IdPersonne)
+     references Personne;
+
+alter table Emploi add constraint REF_Emplo_Entre_FK
+     foreign key (Numero)
+     references Entreprise;
+
+alter table ExamenRealise add constraint REF_Exame_TypeE_FK
+     foreign key (IdTypeExamen)
+     references TypeExamen;
+
+alter table ExamenRealise add constraint REF_Exame_Visit
+     foreign key (IdVisiteMedicale)
+     references VisiteMedicale;
+
+alter table VisiteMedicale add constraint REF_Visit_Lieu_FK
+     foreign key (IdLieu)
+     references Lieu;
+
+alter table VisiteMedicale add constraint REF_Visit_Emplo_FK
+     foreign key (IdEmploi)
+     references Emploi;
+
+
+-- Index Section
+-- _____________ 
+
+create unique index ID_Emploi_IND
+     on Emploi (IdEmploi);
+
+create unique index SID_Emploi_IND
+     on Emploi (IdPersonne, Numero);
+
+create index REF_Emplo_Entre_IND
+     on Emploi (Numero);
+
+create unique index ID_Entreprise_IND
+     on Entreprise (Numero);
+
+create unique index ID_ExamenRealise_IND
+     on ExamenRealise (idExamenReal);
+
+create unique index SID_ExamenRealise_IND
+     on ExamenRealise (IdVisiteMedicale, IdTypeExamen);
+
+create index REF_Exame_TypeE_IND
+     on ExamenRealise (IdTypeExamen);
+
+create unique index ID_Lieu_IND
+     on Lieu (IdLieu);
+
+create unique index ID_Personne_IND
+     on Personne (IdPersonne);
+
+create unique index ID_TypeExamen_IND
+     on TypeExamen (IdTypeExamen);
+
+create unique index ID_VisiteMedicale_IND
+     on VisiteMedicale (IdVisiteMedicale);
+
+create unique index SID_VisiteMedicale_IND
+     on VisiteMedicale (Date, IdEmploi);
+
+create index REF_Visit_Lieu_IND
+     on VisiteMedicale (IdLieu);
+
+create index REF_Visit_Emplo_IND
+     on VisiteMedicale (IdEmploi);*/
+
